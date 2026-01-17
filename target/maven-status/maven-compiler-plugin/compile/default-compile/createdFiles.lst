@@ -1,0 +1,6 @@
+uce\edu\web\api\matricula\interfaces\EstudianteResource.class
+uce\edu\web\api\matricula\GreetingResource.class
+uce\edu\web\api\matricula\infraestrucuture\EstudianteRepository.class
+uce\edu\web\api\matricula\application\EstudianteService.class
+uce\edu\web\api\matricula\domain\Estudiante.class
+uce\edu\web\api\matricula\MyEntity.class
