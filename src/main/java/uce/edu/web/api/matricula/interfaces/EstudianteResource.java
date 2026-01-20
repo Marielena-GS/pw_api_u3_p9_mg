@@ -42,7 +42,7 @@ public class EstudianteResource {
         this.estudianteService.actualizar(id, estu);
     }
 
-        @PATCH
+    @PATCH
     @Path("/actualizarParcial/{id}")
     public void actualizarParcial(@PathParam("id") Integer id, Estudiante estu){
         this.estudianteService.actualizarParcial(id, estu);
