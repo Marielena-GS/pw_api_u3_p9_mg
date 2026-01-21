@@ -20,6 +20,9 @@ public class Estudiante extends PanacheEntityBase{
     private String nombre;
     private String apellido;
     private LocalDateTime fechaNacimiento;
+
+    public String provincia;
+    public String genero;
     
     public Long getId() {
         return id;
