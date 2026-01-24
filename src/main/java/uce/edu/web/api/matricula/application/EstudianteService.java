@@ -63,7 +63,7 @@ public class EstudianteService {
         //return this.estudianteRepository.find("provincia", provincia).list();
         
                 List<EstudianteRepresentation> list=new ArrayList<>();
-        for( Estudiante est: this.estudianteRepository.find("provincia = ?1 and genero = ?2", provincia, genero).list();){
+        for( Estudiante est: this.estudianteRepository.find("provincia = ?1 and genero = ?2", provincia, genero).list()){
             list.add(this.mapperToER(est));
         }
         return list;
