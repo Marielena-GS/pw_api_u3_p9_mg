@@ -12,7 +12,6 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.QueryParam;
 import uce.edu.web.api.matricula.application.MateriaService;
 import uce.edu.web.api.matricula.domain.Materia;
 
