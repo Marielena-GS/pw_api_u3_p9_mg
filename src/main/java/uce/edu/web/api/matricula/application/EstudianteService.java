@@ -31,30 +31,30 @@ public class EstudianteService {
 
     @Transactional
     public void crear(EstudianteRepresentation estu) {
-        this.estudianteRepository.persist(this.mapperToRE(estu));
+        this.estudianteRepository.persist(this.mapperToEstudiante(estu));
     }
 
     @Transactional
     public void actualizar(Integer id, EstudianteRepresentation estudiante) {
 
         Estudiante est = estudianteRepository.findById(id.longValue());
-        est.setApellido(estudiante.getApellido());
-        est.setNombre(estudiante.getNombre());
-        est.setFechaNacimiento(estudiante.getFechaNacimiento());
+        est.setApellido(estudiante.apellido);
+        est.setNombre(estudiante.nombre);
+        est.setFechaNacimiento(estudiante.fechaNacimiento);
         // hibernate actualiza directamente el estudiante por dity cheking
     }
 
      @Transactional
     public void actualizarParcial(Integer id, EstudianteRepresentation estudiante) {
         Estudiante est = estudianteRepository.findById(id.longValue());
-        if (estudiante.getNombre() != null) {
-            est.setApellido(estudiante.getApellido());
+        if (estudiante.nombre != null) {
+            est.setApellido(estudiante.apellido);
         }
-        if (estudiante.getApellido() != null) {
-            est.setApellido(estudiante.getApellido());
+        if (estudiante.apellido!= null) {
+            est.setApellido(estudiante.apellido);
         }
-        if (estudiante.getFechaNacimiento() != null) {
-            est.setFechaNacimiento(estudiante.getFechaNacimiento());
+        if (estudiante.fechaNacimiento != null) {
+            est.setFechaNacimiento(estudiante.fechaNacimiento);
         }
         // hibernate actualiza directamente el estudiante por dity cheking
     }
