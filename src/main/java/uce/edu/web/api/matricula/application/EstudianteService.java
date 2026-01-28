@@ -2,6 +2,7 @@ package uce.edu.web.api.matricula.application;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -15,59 +16,63 @@ public class EstudianteService {
     @Inject
     private EstudianteRepository estudianteRepository;
 
-    public List<EstudianteRepresentation> listarTodos(){
-        List<EstudianteRepresentation> list=new ArrayList<>();
-        for( Estudiante est: this.estudianteRepository.listAll()){
-            list.add(this.mapperToER(est));
+    public List<EstudianteRepresentation> listarTodos() {
+        List<EstudianteRepresentation> list = new ArrayList<>();
+        List<Estudiante> listE = this.estudianteRepository.listAll();
+        for (Estudiante estudiante : listE) {
+            list.add(mapperToER(estudiante));
         }
         return list;
-        
     }
 
-    public EstudianteRepresentation consultarPorId(Integer id){
-        return this.mapperToER(this.estudianteRepository.findById(id.longValue()));
-    }
-    @Transactional
-    public void crear(Estudiante estu){
-        this.estudianteRepository.persist(estu);
+     public EstudianteRepresentation consultarPorId(Integer id) {
+        return this.mapperToER(estudianteRepository.findById(id.longValue()));
     }
 
     @Transactional
-    public void actualizar(Integer id, Estudiante est){
-        Estudiante estu = this.mapperToEstudiante(this.consultarPorId(id));
-        estu.setApellido(est.getApellido());
-        estu.setNombre(est.getNombre());
-        estu.setFechaNacimiento(est.getFechaNacimiento());
+    public void crear(EstudianteRepresentation estu) {
+        this.estudianteRepository.persist(this.mapperToRE(estu));
     }
 
     @Transactional
-    public void actualizarParcial(Integer id, Estudiante est){
-        Estudiante estu=this.consultarPorId(id);
-        if(est.getNombre()!=null){
-            estu.setNombre(est.getNombre());
+    public void actualizar(Integer id, EstudianteRepresentation estudiante) {
+
+        Estudiante est = estudianteRepository.findById(id.longValue());
+        est.setApellido(estudiante.getApellido());
+        est.setNombre(estudiante.getNombre());
+        est.setFechaNacimiento(estudiante.getFechaNacimiento());
+        // hibernate actualiza directamente el estudiante por dity cheking
+    }
+
+     @Transactional
+    public void actualizarParcial(Integer id, EstudianteRepresentation estudiante) {
+        Estudiante est = estudianteRepository.findById(id.longValue());
+        if (estudiante.getNombre() != null) {
+            est.setApellido(estudiante.getApellido());
         }
-        if(est.getApellido()!=null){
-            estu.setApellido(est.getApellido());
+        if (estudiante.getApellido() != null) {
+            est.setApellido(estudiante.getApellido());
         }
-        if(est.getFechaNacimiento()!=null){
-            estu.setFechaNacimiento(est.getFechaNacimiento());
+        if (estudiante.getFechaNacimiento() != null) {
+            est.setFechaNacimiento(estudiante.getFechaNacimiento());
         }
+        // hibernate actualiza directamente el estudiante por dity cheking
     }
     
     @Transactional
-    public void eliminar(Integer id){
-        this.estudianteRepository.deleteById(id.longValue());
+    public void eliminar(Integer id) {
+        estudianteRepository.deleteById(id.longValue());
     }
 
-    public List<EstudianteRepresentation> buscarPorProvincia(String provincia, String genero){
-        //return this.estudianteRepository.find("provincia", provincia).list();
-        
-                List<EstudianteRepresentation> list=new ArrayList<>();
-        for( Estudiante est: this.estudianteRepository.find("provincia = ?1 and genero = ?2", provincia, genero).list()){
-            list.add(this.mapperToER(est));
+    // metodo panache para optimizar codigo
+    public List<EstudianteRepresentation> buscarPorProvincia(String provincia, String genero) {
+        // return estudianteRepository.find("provincia", provincia).list();
+        List<Estudiante> list = estudianteRepository.find("provincia = ?1 and genero =?2", provincia, genero).list();
+        List<EstudianteRepresentation> list2 = new ArrayList<>();
+        for (Estudiante estudiante : list) {
+            list2.add(this.mapperToER(estudiante));
         }
-        return list;
-        
+        return list2;
     }
 
     private EstudianteRepresentation mapperToER(Estudiante est){
