@@ -3,6 +3,7 @@ C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\
 C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\application\MateriaService.java
 C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\application\representation\EstudianteRepresentation.java
 C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\application\representation\HijoRepresentation.java
+C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\application\representation\LinkDto.java
 C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\domain\Estudiante.java
 C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\domain\Hijo.java
 C:\Users\fing.labcom\Documents\Github\pw_api_u3_p9_mg\src\main\java\uce\edu\web\api\matricula\domain\Materia.java
