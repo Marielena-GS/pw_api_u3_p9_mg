@@ -1,6 +1,7 @@
 package uce.edu.web.api.matricula.application.representation;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class EstudianteRepresentation {
 
@@ -10,5 +11,9 @@ public class EstudianteRepresentation {
     public LocalDateTime fechaNacimiento;
     public String provincia;
     public String genero;
+
+   // http://localhost:8080/............./estudiante/1/hijos un hipervinculo de referencia
     
+   public List<LinkDto> links;
+
 }
